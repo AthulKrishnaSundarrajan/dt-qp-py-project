@@ -12,10 +12,6 @@ Primary Contributor: Daniel R. Herber (danielrherber on Github)
 
 import os
 import sys
-
-sys.path.insert(1,'/dt-qp-py-project/src')
-
-os.chdir('../../../')
 import numpy as np
 from src.classes.DTQPy_CLASS_OPTS import *
 from src.classes.DTQPy_CLASS_SETUP import *
@@ -67,6 +63,7 @@ T,U,Y,P,F,internal,opts = DTQPy_solve(s,opts)
 
 # plot
 plt.close('all')
+
 fig,ax = plt.subplots()
 ax.plot(T, Y[:,0], label="x1")
 ax.plot(T, Y[:,1], label="x2")
@@ -78,7 +75,10 @@ fig, a = plt.subplots()
 a.plot(T,U,label = "u")
 a.set_xlabel('t')
 a.set_ylabel('u')
-a.set_title('Controls');
+a.set_title('Controls')
+
+plt.show()
+
 
           
         

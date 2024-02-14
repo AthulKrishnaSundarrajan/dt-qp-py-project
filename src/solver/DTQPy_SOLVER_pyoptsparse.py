@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-DTQPy_SOLVER_pyoptsparse
-Reorganize matrices and solve the problem using IPOPT from pyoptsparse
+DTQPy_SOLVER_ipopt
+Reorganize matrices and solve the problem using IPOPT from ipopt
 
 Contributor: Athul Krishna Sundarrajan (AthulKrishnaSundarrajan on Github)
 Primary Contributor: Daniel R. Herber (danielrherber on Github)
@@ -17,7 +17,7 @@ import argparse
 import numpy as np
 
 
-def DTQPy_SOLVER_pyoptsparse(H,f,A,b,Aeq,beq,lb,ub,internal,opts):
+def DTQPy_SOLVER_ipopt(H,f,A,b,Aeq,beq,lb,ub,internal,opts):
     
     # obtain solver preferences
     solver = opts.solver
@@ -32,7 +32,7 @@ def DTQPy_SOLVER_pyoptsparse(H,f,A,b,Aeq,beq,lb,ub,internal,opts):
                   'file_print_level':5}
     
     # obtain the number of linear equality/inequality constraints
-    n = A.shape[0]; neq = Aeq.shape[0]
+    nineq = A.shape[0]; neq = Aeq.shape[0]
     
     # define a wrapper function to pass additional arguments to pyoptsparse
     class PyOptSp_wrapper():
@@ -97,17 +97,17 @@ def DTQPy_SOLVER_pyoptsparse(H,f,A,b,Aeq,beq,lb,ub,internal,opts):
     # LB and UB for the optimization variables
     x0 = np.zeros(nx)
     optProb.addVarGroup("xvars", nx, lower=lb, upper=ub, value=x0)
-    
+
     # construct the upper and lower bounds for linear equality and inequality constraints
     # beq < Aeq < beq
     # -inf < A < b
-    lower = np.vstack([-np.inf*np.ones((n,1)),beq.todense()])
-    upper = np.vstack([b.todense(),beq.todense()])
-    
+    lower = np.vstack([-np.inf*np.ones((nineq,1)),beq.todense()]);lower = np.squeeze(np.asarray(lower))
+    upper = np.vstack([b.todense(),beq.todense()]); upper = np.squeeze(np.asarray(upper))
+
     # add linear constraints
     optProb.addConGroup(
         "lincon", # type
-        n + neq, # number of linear constraints
+        nineq + neq, # number of linear constraints
         lower = lower, # lower limit
         upper = upper, # upper limit
         linear = True, # linear

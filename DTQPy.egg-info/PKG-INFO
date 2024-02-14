@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: DTQPy
+Version: 1.0
+Summary: Direct Transcription Quadratic Programming
+Author-email: Herber Research Group <Daniel.Herber@colostate.edu>
+Maintainer-email: Athul Krishna Sundarrajan <Athul.Sundarrajan@colostate.edu>, "Daniel R. Herber" <Daniel.Herber@colostate.edu>
+License: BSD-3
+Project-URL: Homepage, https://github.com/AthulKrishnaSundarrajan/dt-qp-py-project
+Keywords: optimal-control,direct-transcription,optimization
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: License :: BSD-3
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: mat4py
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+Requires-Dist: pyoptsparse
+Provides-Extra: test
+Requires-Dist: coveralls; extra == "test"
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Provides-Extra: opt
+Requires-Dist: pyoptsparse; extra == "opt"
+Provides-Extra: docs
+Requires-Dist: sphinx; extra == "docs"
+Requires-Dist: sphinxcontrib-bibtex; extra == "docs"
+Requires-Dist: sphinx_rtd_theme>=1.3; extra == "docs"
+Requires-Dist: sphinxcontrib-applehelp; extra == "docs"
+Requires-Dist: sphinxcontrib-devhelp; extra == "docs"
+Requires-Dist: sphinxcontrib-htmlhelp; extra == "docs"
+Requires-Dist: sphinxcontrib-jsmath; extra == "docs"
+Requires-Dist: sphinxcontrib-qthelp; extra == "docs"
+Requires-Dist: sphinxcontrib-serializinghtml; extra == "docs"
+
+## README (dt-qp-project)
+This project solves linear-quadratic dynamic optimization (LQDO) problems using direct transcription (DT) and quadratic programming (QP)
+
+![readme_image.svg](optional/readme_image.svg)
+
+---
+### Citation
+Please cite the following two items if you use the DT QP Project:
+* DR Herber. *Advances in Combined Architecture, Plant, and Control Design.* PhD Dissertation, University of Illinois at Urbana-Champaign, Urbana, IL, USA, Dec. 2017. [[bibtex]](http://systemdesign.illinois.edu/~systemdesign/bibtexbrowser.php?key=Herber2017e&bib=esdl_refs.bib) [[pdf]](http://systemdesign.illinois.edu/publications/Her17e.pdf)
+	- *Discusses the theory behind this project and contains a number of examples comparing the different methods.*
+* DR Herber, YH Lee, JT Allison. *DT QP Project*, GitHub. url: [https://github.com/danielrherber/dt-qp-project](https://github.com/danielrherber/dt-qp-project)
+
+---
+### General Information
+This is a limited implementation of the [DTQP](https://github.com/danielrherber/dt-qp-project) in python to solve strictly linear-quadratic dynamic optimizations problems on simple equi-distant mesh.
+Unlike DTQP, DTQPy has only the composite trapezoidal (CTR) method implemented for transcribing the objective function, and the dynamic constraints.
+Additionally, no mesh-refinement feature has been implemented.
+
+#### Contributors
+- [Athul K. Sundarrajan](https://github.com/AthulKrishnaSundarrajan)
+- [John Jasa](https://github.com/johnjasa)
+- [Daniel Zalkind](https://github.com/dzalkind)
+- [Daniel R. Herber](https://github.com/danielrherber) (primary)
+
+
